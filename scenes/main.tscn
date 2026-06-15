@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://btphnkgyvnrxl" path="res://scripts/game_manager.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://cdpmfpfbhh38p" path="res://scenes/paddle.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://c1ggi3itfilpm" path="res://scenes/ball.tscn" id="3_sugp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
 size = Vector2(800, 20)
@@ -21,7 +22,7 @@ color = Color(0.1, 0.1, 0.15, 1)
 [node name="GameArea" type="Node2D" parent="." unique_id=1754378042]
 
 [node name="Walls" type="StaticBody2D" parent="GameArea" unique_id=1520514403]
-collision_layer = 128
+collision_layer = 8
 
 [node name="TopWall" type="CollisionShape2D" parent="GameArea/Walls" unique_id=926348609]
 position = Vector2(400, 10)
@@ -37,6 +38,9 @@ shape = SubResource("RectangleShape2D_sugp2")
 
 [node name="Paddle" parent="GameArea" unique_id=2043911679 instance=ExtResource("2_0wfyh")]
 position = Vector2(400, 550)
+
+[node name="Ball" parent="GameArea" unique_id=1281310550 instance=ExtResource("3_sugp2")]
+position = Vector2(400, 520)
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=257097914]
 
