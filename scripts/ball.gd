@@ -12,6 +12,8 @@ const DEAD_ZONE_Y: float = 620.0         # 出界判定Y坐标
 const MIN_HORIZONTAL_SPEED: float = 50.0 # 最小水平速度阈值（防死循环）
 
 var launched: bool = false               # 是否已发射
+var paddle: CharacterBody2D = null       # 挡板引用
+var spawn_position: Vector2              # 初始生成位置
 
 
 func _ready() -> void:
@@ -19,22 +21,42 @@ func _ready() -> void:
 	continuous_cd = RigidBody2D.CCD_MODE_CAST_RAY
 	# 不受重力影响
 	gravity_scale = 0.0
+	# 线性/角阻尼归零，防止速度衰减
+	linear_damp = 0.0
+	angular_damp = 0.0
+	# 创建物理材质：弹性=1.0（完全弹性碰撞），摩擦=0.0
+	var physics_material := PhysicsMaterial.new()
+	physics_material.bounce = 1.0
+	physics_material.friction = 0.0
+	physics_material_override = physics_material
+	# 获取挡板引用
+	paddle = get_parent().get_node("Paddle") as CharacterBody2D
+	# 记录初始生成位置
+	spawn_position = position
+	# 连接 ball_lost 信号到 GameManager 单例
+	ball_lost.connect(GameManager.lose_life)
 	# 初始状态：锁定物理，停在挡板上方
 	freeze = true
 
 
 func _physics_process(_delta: float) -> void:
-	# 限制最大速度
-	linear_velocity = linear_velocity.limit_length(MAX_SPEED)
+	# 发射后保持恒定速度
+	if launched:
+		linear_velocity = linear_velocity.normalized() * MAX_SPEED
 
 	# 出界检测：小球Y坐标超过屏幕底部
 	if position.y > DEAD_ZONE_Y:
 		ball_lost.emit()
 		reset_ball()
 
-	# 按下空格键发射小球
-	if not launched and Input.is_action_just_pressed("launch"):
-		launch_ball()
+	# 未发射时跟随挡板移动
+	if not launched:
+		if paddle:
+			position.x = paddle.position.x
+			position.y = paddle.position.y - RESET_OFFSET_Y
+		# 按下空格键发射小球
+		if Input.is_action_just_pressed("launch"):
+			launch_ball()
 
 
 ## 发射小球
@@ -49,7 +71,9 @@ func reset_ball() -> void:
 	launched = false
 	freeze = true
 	linear_velocity = Vector2.ZERO
-	# 位置重置到挡板上方（由GameManager或外部调用设置position）
+	# 位置重置到挡板上方
+	if paddle:
+		position = Vector2(paddle.position.x, paddle.position.y - RESET_OFFSET_Y)
 
 
 ## 碰撞时检测水平速度，防止垂直反弹死循环
