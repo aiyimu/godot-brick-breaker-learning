@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dnssrig5es64m"]
 
 [ext_resource type="Script" uid="uid://btphnkgyvnrxl" path="res://scripts/game_manager.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cdpmfpfbhh38p" path="res://scenes/paddle.tscn" id="2_0wfyh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
 size = Vector2(800, 20)
@@ -33,6 +34,9 @@ shape = SubResource("RectangleShape2D_0wfyh")
 [node name="RightWall" type="CollisionShape2D" parent="GameArea/Walls" unique_id=1407290371]
 position = Vector2(790, 300)
 shape = SubResource("RectangleShape2D_sugp2")
+
+[node name="Paddle" parent="GameArea" unique_id=2043911679 instance=ExtResource("2_0wfyh")]
+position = Vector2(400, 550)
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=257097914]
 
