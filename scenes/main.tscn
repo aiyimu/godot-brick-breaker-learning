@@ -2,6 +2,15 @@
 
 [ext_resource type="Script" uid="uid://btphnkgyvnrxl" path="res://scripts/game_manager.gd" id="1_o5qli"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
+size = Vector2(800, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
+size = Vector2(20, 600)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
+size = Vector2(20, 600)
+
 [node name="Node" type="Node2D" unique_id=1111776277]
 script = ExtResource("1_o5qli")
 
@@ -9,6 +18,21 @@ script = ExtResource("1_o5qli")
 color = Color(0.1, 0.1, 0.15, 1)
 
 [node name="GameArea" type="Node2D" parent="." unique_id=1754378042]
+
+[node name="Walls" type="StaticBody2D" parent="GameArea" unique_id=1520514403]
+collision_layer = 128
+
+[node name="TopWall" type="CollisionShape2D" parent="GameArea/Walls" unique_id=926348609]
+position = Vector2(400, 10)
+shape = SubResource("RectangleShape2D_o5qli")
+
+[node name="LeftWall" type="CollisionShape2D" parent="GameArea/Walls" unique_id=1994616419]
+position = Vector2(10, 300)
+shape = SubResource("RectangleShape2D_0wfyh")
+
+[node name="RightWall" type="CollisionShape2D" parent="GameArea/Walls" unique_id=1407290371]
+position = Vector2(790, 300)
+shape = SubResource("RectangleShape2D_sugp2")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=257097914]
 
