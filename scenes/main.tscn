@@ -38,22 +38,17 @@ position = Vector2(790, 300)
 shape = SubResource("RectangleShape2D_sugp2")
 
 [node name="TopWallVisual" type="ColorRect" parent="GameArea/Walls" unique_id=2000000001]
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 800.0
 offset_bottom = 20.0
 color = Color(0.5, 0.5, 0.6, 1)
 
 [node name="LeftWallVisual" type="ColorRect" parent="GameArea/Walls" unique_id=2000000002]
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 20.0
 offset_bottom = 600.0
 color = Color(0.5, 0.5, 0.6, 1)
 
 [node name="RightWallVisual" type="ColorRect" parent="GameArea/Walls" unique_id=2000000003]
 offset_left = 780.0
-offset_top = 0.0
 offset_right = 800.0
 offset_bottom = 600.0
 color = Color(0.5, 0.5, 0.6, 1)
@@ -85,15 +80,12 @@ text = "生命: 3"
 
 [node name="GameOverPanel" type="Control" parent="UILayer" unique_id=175681558]
 visible = false
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 800.0
-offset_bottom = 600.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
 
 [node name="DimBackground" type="ColorRect" parent="UILayer/GameOverPanel" unique_id=1633209663]
 layout_mode = 1
@@ -114,14 +106,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -80.0
-offset_right = 150.0
-offset_bottom = -20.0
+offset_left = -32.0
+offset_top = -11.5
+offset_right = 32.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "游戏结束"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="RestartButton" type="Button" parent="UILayer/GameOverPanel" unique_id=1590699155]
 layout_mode = 1
