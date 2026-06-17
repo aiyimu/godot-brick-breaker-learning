@@ -37,8 +37,9 @@ func _ready() -> void:
 	paddle = get_parent().get_node("Paddle") as CharacterBody2D
 	# 记录初始生成位置
 	spawn_position = position
-	# 连接 ball_lost 信号到 GameManager 单例
-	ball_lost.connect(GameManager.lose_life)
+	# 连接 ball_lost 信号到 GameManager 单例（防止重复连接）
+	if not ball_lost.is_connected(GameManager.lose_life):
+		ball_lost.connect(GameManager.lose_life)
 	# 初始状态：锁定物理，停在挡板上方
 	freeze = true
 

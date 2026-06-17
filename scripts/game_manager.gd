@@ -36,6 +36,9 @@ func reset_game() -> void:
 	lives = 3
 	is_game_over = false
 	is_paused = false
+	# 状态变更后通知 UI 更新
+	score_updated.emit(score)
+	lives_updated.emit(lives)
 
 
 ## 生成砖块网格（由主场景调用）
@@ -53,27 +56,36 @@ func spawn_bricks(container: Node2D) -> void:
 				BRICK_START_X + col * x_step,
 				BRICK_START_Y + row * y_step
 			)
-			# 连接砖块的 brick_destroyed 信号
-			brick.brick_destroyed.connect(_on_brick_destroyed)
+			# 连接砖块的 brick_destroyed 信号（防止重复连接）
+			if not brick.brick_destroyed.is_connected(_on_brick_destroyed):
+				brick.brick_destroyed.connect(_on_brick_destroyed)
 			container.add_child(brick)
 
 
 ## 砖块被击碎的回调
 func _on_brick_destroyed(score_value: int) -> void:
+	# 游戏已结束则忽略后续砖块击碎
+	if is_game_over:
+		return
 	add_score(score_value)
 	check_win()
 
 
 ## 增加分数
 func add_score(amount: int) -> void:
+	# 游戏已结束则忽略分数变化
+	if is_game_over:
+		return
 	score += amount
 	score_updated.emit(score)
 
 
 ## 扣除生命值
 func lose_life() -> void:
+	# 游戏已结束则忽略后续生命扣除
+	if is_game_over:
+		return
 	lives -= 1
-	print('lives-1')
 	lives_updated.emit(lives)
 	if lives <= 0:
 		is_game_over = true
@@ -82,6 +94,10 @@ func lose_life() -> void:
 
 ## 检查是否所有砖块已消除
 func check_win() -> void:
+	# 游戏已结束则不再判定胜利
+	if is_game_over:
+		return
 	var bricks = get_tree().get_nodes_in_group("bricks")
 	if bricks.size() == 0:
+		is_game_over = true
 		game_won.emit()
