@@ -10,7 +10,7 @@ extends CanvasLayer
 
 
 func _ready() -> void:
-	# 连接 GameManager 信号
+	# 连接 GameManager 信号（使用 is_connected 防止重复连接）
 	if not GameManager.score_updated.is_connected(_on_score_updated):
 		GameManager.score_updated.connect(_on_score_updated)
 	if not GameManager.lives_updated.is_connected(_on_lives_updated):
@@ -42,31 +42,34 @@ func _on_lives_updated(lives: int) -> void:
 
 ## 游戏结束回调
 func _on_game_over() -> void:
-	result_label.text = "游戏结束"
-	game_over_panel.visible = true
+	_show_game_over_panel("游戏结束")
 
 
 ## 游戏胜利回调
 func _on_game_won() -> void:
-	result_label.text = "恭喜通关！"
-	game_over_panel.visible = true
+	_show_game_over_panel("恭喜通关！")
 
 
 ## 重新开始按钮回调
 func _on_restart_button_pressed() -> void:
-	GameManager.reset_game()
-	game_over_panel.visible = false
-	_update_score_display(GameManager.score)
-	_update_lives_display(GameManager.lives)
-	# 重新加载主场景
+	# 重新加载主场景：会自动调用 _ready() 重新生成砖块、初始化 UI
+	# GameManager 是 autoload，状态也会通过 _ready() 中 reset_game() 重置
 	get_tree().reload_current_scene()
+
+
+## 显示游戏结束/胜利面板
+func _show_game_over_panel(text: String) -> void:
+	result_label.text = text
+	game_over_panel.visible = true
 
 
 ## 更新分数显示
 func _update_score_display(score: int) -> void:
-	score_label.text = "分数: %d" % score
+	if score_label:
+		score_label.text = "分数: %d" % score
 
 
 ## 更新生命值显示
 func _update_lives_display(lives: int) -> void:
-	lives_label.text = "生命: %d" % lives
+	if lives_label:
+		lives_label.text = "生命: %d" % lives
