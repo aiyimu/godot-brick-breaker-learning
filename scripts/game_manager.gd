@@ -14,6 +14,16 @@ var lives: int = 3          # 剩余生命
 var is_game_over: bool = false
 var is_paused: bool = false
 
+# 砖块生成配置
+const BRICK_SCENE: PackedScene = preload("res://scenes/brick.tscn")
+const BRICK_COLS: int = 10          # 每行砖块数
+const BRICK_ROWS: int = 5           # 砖块行数
+const BRICK_WIDTH: float = 64.0     # 砖块宽度
+const BRICK_HEIGHT: float = 24.0    # 砖块高度
+const BRICK_GAP: float = 4.0        # 砖块间距
+const BRICK_START_X: float = 92.0   # 起始X坐标
+const BRICK_START_Y: float = 60.0   # 起始Y坐标
+
 
 func _ready() -> void:
 	# 初始化游戏状态
@@ -28,6 +38,32 @@ func reset_game() -> void:
 	is_paused = false
 
 
+## 生成砖块网格（由主场景调用）
+func spawn_bricks(container: Node2D) -> void:
+	var x_step: float = BRICK_WIDTH + BRICK_GAP
+	var y_step: float = BRICK_HEIGHT + BRICK_GAP
+
+	for row in range(BRICK_ROWS):
+		for col in range(BRICK_COLS):
+			var brick: StaticBody2D = BRICK_SCENE.instantiate()
+			# 根据行号设置不同生命值（上方的砖块更耐打）
+			brick.health = BRICK_ROWS - row
+			brick.score_value = brick.health * 10
+			brick.position = Vector2(
+				BRICK_START_X + col * x_step,
+				BRICK_START_Y + row * y_step
+			)
+			# 连接砖块的 brick_destroyed 信号
+			brick.brick_destroyed.connect(_on_brick_destroyed)
+			container.add_child(brick)
+
+
+## 砖块被击碎的回调
+func _on_brick_destroyed(score_value: int) -> void:
+	add_score(score_value)
+	check_win()
+
+
 ## 增加分数
 func add_score(amount: int) -> void:
 	score += amount
@@ -37,6 +73,7 @@ func add_score(amount: int) -> void:
 ## 扣除生命值
 func lose_life() -> void:
 	lives -= 1
+	print('lives-1')
 	lives_updated.emit(lives)
 	if lives <= 0:
 		is_game_over = true
