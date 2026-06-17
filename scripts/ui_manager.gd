@@ -10,6 +10,9 @@ extends CanvasLayer
 
 
 func _ready() -> void:
+	# 确保 UI 层在场景暂停时仍能处理输入（按钮点击等）
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	# 连接 GameManager 信号（使用 is_connected 防止重复连接）
 	if not GameManager.score_updated.is_connected(_on_score_updated):
 		GameManager.score_updated.connect(_on_score_updated)
@@ -52,6 +55,8 @@ func _on_game_won() -> void:
 
 ## 重新开始按钮回调
 func _on_restart_button_pressed() -> void:
+	# 恢复场景树运行（游戏结束/胜利时被暂停了）
+	get_tree().paused = false
 	# 重新加载主场景：会自动调用 _ready() 重新生成砖块、初始化 UI
 	# GameManager 是 autoload，状态也会通过 _ready() 中 reset_game() 重置
 	get_tree().reload_current_scene()
@@ -61,6 +66,8 @@ func _on_restart_button_pressed() -> void:
 func _show_game_over_panel(text: String) -> void:
 	result_label.text = text
 	game_over_panel.visible = true
+	# 暂停场景树，停止物理运算和 _process/_physics_process
+	get_tree().paused = true
 
 
 ## 更新分数显示
