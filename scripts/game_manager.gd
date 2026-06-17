@@ -16,8 +16,8 @@ var is_paused: bool = false
 
 # 砖块生成配置
 const BRICK_SCENE: PackedScene = preload("res://scenes/brick.tscn")
-const BRICK_COLS: int = 10          # 每行砖块数
-const BRICK_ROWS: int = 5           # 砖块行数
+const BRICK_COLS: int = 1          # 每行砖块数
+const BRICK_ROWS: int = 1           # 砖块行数
 const BRICK_WIDTH: float = 64.0     # 砖块宽度
 const BRICK_HEIGHT: float = 24.0    # 砖块高度
 const BRICK_GAP: float = 4.0        # 砖块间距
@@ -97,7 +97,19 @@ func check_win() -> void:
 	# 游戏已结束则不再判定胜利
 	if is_game_over:
 		return
+	# 延迟到下一帧检查：砖块通过 queue_free() 销毁是延迟的，
+	# 当前帧调用时它仍在场景树/组中，会导致胜利判定错误
+	call_deferred("_do_check_win")
+
+
+## 实际执行胜利判定（call_deferred 回调）
+func _do_check_win() -> void:
+	if is_game_over:
+		return
+	print("check win")
 	var bricks = get_tree().get_nodes_in_group("bricks")
+	print(bricks.size())
 	if bricks.size() == 0:
 		is_game_over = true
+		print("胜利")
 		game_won.emit()
