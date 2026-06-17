@@ -97,19 +97,9 @@ func check_win() -> void:
 	# 游戏已结束则不再判定胜利
 	if is_game_over:
 		return
-	# 延迟到下一帧检查：砖块通过 queue_free() 销毁是延迟的，
-	# 当前帧调用时它仍在场景树/组中，会导致胜利判定错误
-	call_deferred("_do_check_win")
-
-
-## 实际执行胜利判定（call_deferred 回调）
-func _do_check_win() -> void:
-	if is_game_over:
-		return
-	print("check win")
+	# 砖块在 hit() 中 emit 前已 remove_from_group("bricks")，
+	# 故此时可立即读取到正确的砖块数量
 	var bricks = get_tree().get_nodes_in_group("bricks")
-	print(bricks.size())
 	if bricks.size() == 0:
 		is_game_over = true
-		print("胜利")
 		game_won.emit()
