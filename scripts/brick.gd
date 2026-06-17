@@ -28,6 +28,7 @@ func _ready() -> void:
 ## 被小球击中时调用（由 ball.gd 的碰撞回调触发）
 func hit() -> void:
 	health -= 1
+	print("be hit")
 	if health <= 0:
 		# 砖块被击碎，发出信号并销毁自身
 		brick_destroyed.emit(score_value)

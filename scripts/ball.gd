@@ -20,6 +20,9 @@ var is_out_of_bounds: bool = false       # 出界标记，防止重复触发 bal
 func _ready() -> void:
 	# 启用连续碰撞检测（CCD），防止高速穿透
 	continuous_cd = RigidBody2D.CCD_MODE_CAST_RAY
+	# 启用接触监测，否则 body_entered 信号不会触发
+	contact_monitor = true
+	max_contacts_reported = 10
 	# 不受重力影响
 	gravity_scale = 0.0
 	# 线性/角阻尼归零，防止速度衰减

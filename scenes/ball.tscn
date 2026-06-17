@@ -7,6 +7,8 @@ radius = 8.0
 
 [node name="Node" type="RigidBody2D" unique_id=1281310550]
 collision_mask = 14
+contact_monitor = true
+max_contacts_reported = 10
 script = ExtResource("1_7s4qf")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1461833704]
