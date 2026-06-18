@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://b5ip5sqb4bqx0"]
 
+[ext_resource type="Script" path="res://scripts/menu_manager.gd" id="1_yqeox"]
+
 [node name="Node" type="Control" unique_id=15593832]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_yqeox")
 
 [node name="TitleLabel" type="Label" parent="." unique_id=1696792221]
 layout_mode = 0
