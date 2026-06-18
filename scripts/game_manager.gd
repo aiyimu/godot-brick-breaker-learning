@@ -33,7 +33,7 @@ func _ready() -> void:
 ## 重置游戏状态到初始值
 func reset_game() -> void:
 	score = 0
-	lives = 3
+	lives = 1
 	is_game_over = false
 	is_paused = false
 	# 状态变更后通知 UI 更新
