@@ -18,6 +18,8 @@ var stamina: float = MAX_STAMINA       # 当前体力值
 
 
 func _ready() -> void:
+	# 加入 paddle 组，供 UI 等模块查找
+	add_to_group("paddle")
 	# 固定挡板Y坐标
 	position.y = FIXED_Y
 

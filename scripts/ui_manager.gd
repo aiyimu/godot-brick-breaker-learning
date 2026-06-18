@@ -4,6 +4,7 @@ extends CanvasLayer
 
 @onready var score_label: Label = $ScoreLabel
 @onready var lives_label: Label = $LivesLabel
+@onready var stamina_bar: ProgressBar = $StaminaBar
 @onready var game_over_panel: Control = $GameOverPanel
 @onready var result_label: Label = $GameOverPanel/ResultLabel
 @onready var restart_button: Button = $GameOverPanel/RestartButton
@@ -22,6 +23,11 @@ func _ready() -> void:
 		GameManager.game_over.connect(_on_game_over)
 	if not GameManager.game_won.is_connected(_on_game_won):
 		GameManager.game_won.connect(_on_game_won)
+
+	# 连接挡板体力变化信号
+	var paddle: CharacterBody2D = get_tree().get_first_node_in_group("paddle")
+	if paddle and not paddle.stamina_changed.is_connected(_on_stamina_changed):
+		paddle.stamina_changed.connect(_on_stamina_changed)
 
 	# 连接重新开始按钮
 	restart_button.pressed.connect(_on_restart_button_pressed)
@@ -82,3 +88,11 @@ func _update_score_display(score: int) -> void:
 func _update_lives_display(lives: int) -> void:
 	if lives_label:
 		lives_label.text = "生命: %d" % lives
+
+
+## 体力变化回调
+func _on_stamina_changed(stamina: float, max_stamina: float) -> void:
+	if stamina_bar:
+		stamina_bar.value = stamina
+		# 体力不足时进度条变红提示
+		stamina_bar.modulate = Color.RED if stamina < 20.0 else Color.WHITE
