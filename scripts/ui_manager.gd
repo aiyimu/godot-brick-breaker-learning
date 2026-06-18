@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var game_over_panel: Control = $GameOverPanel
 @onready var result_label: Label = $GameOverPanel/ResultLabel
 @onready var restart_button: Button = $GameOverPanel/RestartButton
+@onready var menu_button: Button = $GameOverPanel/MenuButton
 
 
 func _ready() -> void:
@@ -31,6 +32,8 @@ func _ready() -> void:
 
 	# 连接重新开始按钮
 	restart_button.pressed.connect(_on_restart_button_pressed)
+	# 连接返回菜单按钮
+	menu_button.pressed.connect(_on_menu_button_pressed)
 
 	# 初始化 UI 显示
 	_update_score_display(GameManager.score)
@@ -68,6 +71,14 @@ func _on_restart_button_pressed() -> void:
 	# 重新加载主场景：会自动调用 _ready() 重新生成砖块、初始化 UI
 	# GameManager 是 autoload，状态也会通过 _ready() 中 reset_game() 重置
 	get_tree().reload_current_scene()
+
+
+## 返回菜单按钮回调
+func _on_menu_button_pressed() -> void:
+	# 恢复场景树运行并切换到主菜单
+	get_tree().paused = false
+	SoundManager.stop_bgm()
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 
 ## 显示游戏结束/胜利面板

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="godot-brick-breaker-learning"
-run/main_scene="uid://dnssrig5es64m"
+run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/game_manager.gd"
 SoundManager="*res://scripts/sound_manager.gd"
-SettingsManager="*res://scripts/settings_manager.gd"
 MCPRuntime="*uid://lk03a1qwlux3"
+SettingsManager="*res://scripts/settings_manager.gd"
 
 [display]
 
