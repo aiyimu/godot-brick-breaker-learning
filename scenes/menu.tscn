@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b5ip5sqb4bqx0"]
 
-[ext_resource type="Script" path="res://scripts/menu_manager.gd" id="1_yqeox"]
+[ext_resource type="Script" uid="uid://dtki0vjxku5ty" path="res://scripts/menu_manager.gd" id="1_yqeox"]
 
 [node name="Node" type="Control" unique_id=15593832]
 layout_mode = 3
@@ -76,3 +76,96 @@ offset_top = 140.0
 offset_right = 100.0
 offset_bottom = 180.0
 text = "退出游戏"
+
+[node name="SettingsPanel" type="Panel" parent="." unique_id=575797380]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -120.0
+offset_right = 150.0
+offset_bottom = 120.0
+
+[node name="SettingsTitle" type="Label" parent="SettingsPanel" unique_id=894396810]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 10.0
+offset_right = 60.0
+offset_bottom = 35.0
+text = "游戏设置"
+horizontal_alignment = 1
+
+[node name="BgmVolumeLabel" type="Label" parent="SettingsPanel" unique_id=1725074109]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 45.0
+offset_right = 85.0
+offset_bottom = 65.0
+text = "背景音乐:"
+
+[node name="BgmVolumeSlider" type="HSlider" parent="SettingsPanel" unique_id=359530486]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 45.0
+offset_right = 250.0
+offset_bottom = 65.0
+value = 80.0
+
+[node name="SfxVolumeLabel" type="Label" parent="SettingsPanel" unique_id=1197832472]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 75.0
+offset_right = 85.0
+offset_bottom = 95.0
+text = "音效音量:"
+
+[node name="SfxVolumeSlider" type="HSlider" parent="SettingsPanel" unique_id=563428822]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 75.0
+offset_right = 250.0
+offset_bottom = 95.0
+value = 100.0
+
+[node name="LivesLabel" type="Label" parent="SettingsPanel" unique_id=189512588]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 105.0
+offset_right = 85.0
+offset_bottom = 125.0
+text = "初始生命:"
+
+[node name="LivesSlider" type="HSlider" parent="SettingsPanel" unique_id=662254122]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 105.0
+offset_right = 250.0
+offset_bottom = 125.0
+min_value = 1.0
+max_value = 10.0
+value = 3.0
+
+[node name="LivesValueLabel" type="Label" parent="SettingsPanel" unique_id=566991026]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 105.0
+offset_right = 285.0
+offset_bottom = 125.0
+text = "3"
+
+[node name="CloseSettingsButton" type="Button" parent="SettingsPanel" unique_id=1296555239]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 185.0
+offset_right = 50.0
+offset_bottom = 215.0
+text = "关闭"

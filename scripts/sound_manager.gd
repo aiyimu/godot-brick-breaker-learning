@@ -16,6 +16,7 @@ const SFX_RESOURCES: Dictionary = {
 
 const BGM_RESOURCES: Dictionary = {
 	"gameplay_bgm": preload("res://assets/sounds/bgm/gameplay_bgm.mp3"),
+	"menu_bgm": preload("res://assets/sounds/bgm/menu_bgm.mp3"),
 }
 
 # === SFX 播放器池（轮询复用，支持同时播放多个音效） ===
