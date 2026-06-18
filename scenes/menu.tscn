@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://b5ip5sqb4bqx0"]
+
+[node name="Node" type="Control" unique_id=15593832]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1696792221]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 80.0
+offset_right = 150.0
+offset_bottom = 140.0
+text = "极简打砖块"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="." unique_id=1394495557]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = -20.0
+text = "开始游戏"
+
+[node name="DifficultyLabel" type="Label" parent="." unique_id=343252432]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 20.0
+text = "难度选择:"
+horizontal_alignment = 1
+
+[node name="DifficultyOptionButton" type="OptionButton" parent="." unique_id=772133848]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 25.0
+offset_right = 100.0
+offset_bottom = 55.0
+
+[node name="SettingsButton" type="Button" parent="." unique_id=287719963]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 80.0
+offset_right = 100.0
+offset_bottom = 120.0
+text = "设置"
+
+[node name="QuitButton" type="Button" parent="." unique_id=430215567]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 140.0
+offset_right = 100.0
+offset_bottom = 180.0
+text = "退出游戏"
