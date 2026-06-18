@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/game_manager.gd"
 SoundManager="*res://scripts/sound_manager.gd"
+SettingsManager="*res://scripts/settings_manager.gd"
 MCPRuntime="*uid://lk03a1qwlux3"
 
 [display]
