@@ -45,11 +45,13 @@ func _on_lives_updated(lives: int) -> void:
 
 ## 游戏结束回调
 func _on_game_over() -> void:
+	SoundManager.stop_bgm()
 	_show_game_over_panel("游戏结束")
 
 
 ## 游戏胜利回调
 func _on_game_won() -> void:
+	SoundManager.stop_bgm()
 	_show_game_over_panel("恭喜通关！")
 
 

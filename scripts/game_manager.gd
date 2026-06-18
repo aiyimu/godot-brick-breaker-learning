@@ -89,6 +89,7 @@ func lose_life() -> void:
 	lives_updated.emit(lives)
 	if lives <= 0:
 		is_game_over = true
+		SoundManager.play_sfx("game_over")
 		game_over.emit()
 
 
@@ -102,4 +103,5 @@ func check_win() -> void:
 	var bricks = get_tree().get_nodes_in_group("bricks")
 	if bricks.size() == 0:
 		is_game_over = true
+		SoundManager.play_sfx("game_win")
 		game_won.emit()

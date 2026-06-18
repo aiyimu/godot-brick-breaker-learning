@@ -52,6 +52,7 @@ func _physics_process(_delta: float) -> void:
 	# 出界检测：小球Y坐标超过屏幕底部（加标记防止重复触发）
 	if position.y > DEAD_ZONE_Y and not is_out_of_bounds:
 		is_out_of_bounds = true
+		SoundManager.play_sfx("ball_lost")
 		ball_lost.emit()
 		reset_ball()
 
@@ -104,11 +105,19 @@ func _sync_ball_position(pos: Vector2) -> void:
 	)
 
 
-## 碰撞时检测水平速度，防止垂直反弹死循环；检测砖块碰撞
+## 碰撞时检测水平速度，防止垂直反弹死循环；检测砖块碰撞；播放碰撞音效
 func _on_body_entered(body: Node) -> void:
 	# 如果水平速度分量过小，添加随机偏移打破死循环
 	if abs(linear_velocity.x) < MIN_HORIZONTAL_SPEED:
 		linear_velocity.x += randi_range(-30, 30)
-	# 检测是否碰撞到砖块，调用其 hit 方法
+
+	# 根据碰撞对象类型播放对应音效
+	if body == paddle:
+		SoundManager.play_sfx("ball_hit_paddle")
+	elif not body.is_in_group("bricks"):
+		# 非砖块、非挡板 → 墙壁碰撞
+		SoundManager.play_sfx("ball_hit_wall")
+
+	# 检测是否碰撞到砖块，调用其 hit 方法（砖块音效由 brick.gd 自行处理）
 	if body.is_in_group("bricks") and body.has_method("hit"):
 		body.hit()

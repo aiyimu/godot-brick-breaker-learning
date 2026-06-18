@@ -32,10 +32,12 @@ func hit() -> void:
 		# 关键：先离开 bricks 组，再发射信号，最后销毁
 		# 避免 GameManager 在 check_win() 时因 queue_free 延迟而读到旧数量
 		remove_from_group("bricks")
+		SoundManager.play_sfx("brick_destroy")
 		brick_destroyed.emit(score_value)
 		queue_free()
 	else:
-		# 还未被击碎，更新颜色
+		# 还未被击碎，播放击中音效并更新颜色
+		SoundManager.play_sfx("brick_hit")
 		_update_color()
 
 
