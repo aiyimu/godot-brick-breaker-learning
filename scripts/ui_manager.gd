@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var result_label: Label = $GameOverPanel/ResultLabel
 @onready var restart_button: Button = $GameOverPanel/RestartButton
 @onready var menu_button: Button = $GameOverPanel/MenuButton
+@onready var back_button: Button = $BackButton
 
 
 func _ready() -> void:
@@ -34,6 +35,8 @@ func _ready() -> void:
 	restart_button.pressed.connect(_on_restart_button_pressed)
 	# 连接返回菜单按钮
 	menu_button.pressed.connect(_on_menu_button_pressed)
+	# 连接游戏内返回按钮
+	back_button.pressed.connect(_on_menu_button_pressed)
 
 	# 初始化 UI 显示
 	_update_score_display(GameManager.score)

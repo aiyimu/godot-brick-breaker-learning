@@ -156,3 +156,10 @@ offset_top = 30.0
 offset_right = 60.0
 offset_bottom = 70.0
 text = "返回菜单"
+
+[node name="BackButton" type="Button" parent="UILayer" unique_id=1595645719]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 110.0
+offset_bottom = 40.0
+text = "返回主菜单"
