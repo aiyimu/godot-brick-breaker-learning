@@ -5,17 +5,17 @@ extends Node
 # === 音频资源预加载 ===
 
 const SFX_RESOURCES: Dictionary = {
-	"brick_hit": preload("res://assets/sounds/sfx/brick_hit.wav"),
-	"brick_destroy": preload("res://assets/sounds/sfx/brick_destroy.wav"),
-	"ball_hit_paddle": preload("res://assets/sounds/sfx/ball_hit_paddle.wav"),
-	"ball_hit_wall": preload("res://assets/sounds/sfx/ball_hit_wall.wav"),
-	"ball_lost": preload("res://assets/sounds/sfx/ball_lost.wav"),
+	"brick_hit": preload("res://assets/sounds/sfx/brick_hit.ogg"),
+	"brick_destroy": preload("res://assets/sounds/sfx/brick_destroy.ogg"),
+	"ball_hit_paddle": preload("res://assets/sounds/sfx/ball_hit_paddle.ogg"),
+	"ball_hit_wall": preload("res://assets/sounds/sfx/ball_hit_wall.ogg"),
+	"ball_lost": preload("res://assets/sounds/sfx/ball_lost.ogg"),
 	"game_over": preload("res://assets/sounds/sfx/game_over.wav"),
-	"game_win": preload("res://assets/sounds/sfx/game_win.wav"),
+	"game_win": preload("res://assets/sounds/sfx/game_win.mp3"),
 }
 
 const BGM_RESOURCES: Dictionary = {
-	"gameplay_bgm": preload("res://assets/sounds/bgm/gameplay_bgm.wav"),
+	"gameplay_bgm": preload("res://assets/sounds/bgm/gameplay_bgm.mp3"),
 }
 
 # === SFX 播放器池（轮询复用，支持同时播放多个音效） ===
