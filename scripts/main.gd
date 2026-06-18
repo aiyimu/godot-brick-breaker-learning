@@ -10,3 +10,5 @@ func _ready() -> void:
 	GameManager.reset_game()
 	# 生成砖块网格
 	GameManager.spawn_bricks(bricks_container)
+	# 播放游戏背景音乐
+	SoundManager.play_bgm("gameplay_bgm")
