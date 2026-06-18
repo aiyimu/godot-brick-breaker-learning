@@ -17,7 +17,7 @@ var is_paused: bool = false
 # 砖块生成配置
 const BRICK_SCENE: PackedScene = preload("res://scenes/brick.tscn")
 const BRICK_COLS: int = 5          # 每行砖块数
-const BRICK_ROWS: int = 1           # 砖块行数
+const BRICK_ROWS: int = 3           # 砖块行数
 const BRICK_WIDTH: float = 64.0     # 砖块宽度
 const BRICK_HEIGHT: float = 24.0    # 砖块高度
 const BRICK_GAP: float = 4.0        # 砖块间距

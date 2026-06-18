@@ -17,7 +17,7 @@ const TEXTURES: Dictionary = {
 }
 
 @onready var sprite: Sprite2D = $Sprite2D
-
+const BRICK_SCALE = 0.255
 
 func _ready() -> void:
 	# 加入 bricks 组，供 GameManager 批量查询
@@ -45,5 +45,5 @@ func hit() -> void:
 ## 根据当前生命值更新砖块纹理（4 血及以上使用红色）
 func _update_texture() -> void:
 	if sprite:
-		# 1-3 血使用对应纹理，4 血及以上使用红色
 		sprite.texture = TEXTURES.get(health, preload("res://assets/sprites/brick_red.png"))
+		sprite.scale = Vector2(BRICK_SCALE, BRICK_SCALE)

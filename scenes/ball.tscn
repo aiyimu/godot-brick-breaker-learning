@@ -16,7 +16,7 @@ script = ExtResource("1_7s4qf")
 shape = SubResource("CircleShape2D_7s4qf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=25861991]
-position = Vector2(-8, -8)
+scale = Vector2(0.265625, 0.265625)
 texture = ExtResource("2_cxlvu")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

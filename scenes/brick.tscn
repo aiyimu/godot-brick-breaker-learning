@@ -14,10 +14,9 @@ offset_left = -32.0
 offset_top = -12.0
 offset_right = 32.0
 offset_bottom = 12.0
-color = Color(0.2, 0.8, 0.2, 1)
+color = Color(0.09803922, 0.09803922, 0.14901961, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1668664410]
 shape = SubResource("RectangleShape2D_5l4w1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=327603753]
-position = Vector2(-32, -12)
