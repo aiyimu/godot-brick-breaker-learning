@@ -14,7 +14,7 @@ size = Vector2(20, 600)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
 size = Vector2(20, 600)
 
-[node name="Node" type="Node2D" unique_id=1111776277]
+[node name="Node2" type="Node2D" unique_id=1111776277]
 script = ExtResource("1_jyhfs")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1936808115]
@@ -67,31 +67,31 @@ position = Vector2(400, 520)
 script = ExtResource("3_jyhfs")
 
 [node name="ScoreLabel" type="Label" parent="UILayer" unique_id=472913879]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = 24.0
+offset_top = 51.0
+offset_right = 74.0
+offset_bottom = 74.0
 text = "分数: 0"
 
 [node name="LivesLabel" type="Label" parent="UILayer" unique_id=290667472]
-offset_left = 20.0
-offset_top = 50.0
-offset_right = 20.0
-offset_bottom = 50.0
+offset_left = 24.0
+offset_top = 81.0
+offset_right = 74.0
+offset_bottom = 104.0
 text = "生命: 3"
 
 [node name="StaminaLabel" type="Label" parent="UILayer" unique_id=500000001]
-offset_left = 20.0
-offset_top = 80.0
-offset_right = 20.0
-offset_bottom = 80.0
+offset_left = 25.0
+offset_top = 575.0
+offset_right = 62.0
+offset_bottom = 598.0
 text = "体力:"
 
 [node name="StaminaBar" type="ProgressBar" parent="UILayer" unique_id=500000002]
-offset_left = 70.0
-offset_top = 80.0
-offset_right = 270.0
-offset_bottom = 100.0
+offset_left = 67.0
+offset_top = 577.0
+offset_right = 267.0
+offset_bottom = 597.0
 value = 100.0
 show_percentage = false
 
