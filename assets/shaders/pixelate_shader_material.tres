@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bw03tva0btk8g"]
+
+[ext_resource type="Shader" uid="uid://v7mqri8r41v" path="res://assets/shaders/pixelate.gdshader" id="1_3q0bl"]
+
+[resource]
+shader = ExtResource("1_3q0bl")
+shader_parameter/pixel_size = 4.0
+shader_parameter/color_count = 32
