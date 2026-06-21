@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cdpmfpfbhh38p" path="res://scenes/paddle.tscn" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://dy5urliblbtbj" path="res://scripts/ui_manager.gd" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://c1ggi3itfilpm" path="res://scenes/ball.tscn" id="3_sugp2"]
+[ext_resource type="Material" uid="uid://bw03tva0btk8g" path="res://assets/shaders/pixelate_shader_material.tres" id="5_tbgi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
 size = Vector2(800, 20)
@@ -16,6 +17,16 @@ size = Vector2(20, 600)
 
 [node name="Node2" type="Node2D" unique_id=1111776277]
 script = ExtResource("1_jyhfs")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=690637050]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=172462000]
+material = ExtResource("5_tbgi4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Background" type="ColorRect" parent="." unique_id=1936808115]
 offset_right = 800.0
